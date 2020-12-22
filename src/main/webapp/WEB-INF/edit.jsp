@@ -16,7 +16,7 @@
 
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand">Welcome, <c:out value="${user.firstName}" /></a>
+    <a class="navbar-brand">BELT EXAM</a>
     <form class="d-flex">
       <a class="text-right" href="/logout">Logout</a>
     </form>
@@ -29,33 +29,23 @@
 	<div class="container">
 	  <div class="row">
 	    <div class="col-sm">
-	    <h1 class="text-center">TV Shows</h1>
+	<h1 class="text-center">EDIT TV SHOW</h1>
+			 <form method="post" action="/update/${shows.id}" modelAttribute="show">
+						  <input name="rating" type="hidden" class="form-control" value="${shows.rating}" aria-label="Username" aria-describedby="basic-addon1">
 			
-<table class="table table-success table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Network</th>
-      <th scope="col">Avg Rating</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody> 
-     <c:forEach items="${shows}" var="show">
-  
-    <tr>
-      <td scope="row">${show.id}</td>
-      <td><a href="/view/${show.id}">${show.firstName}</a></td>
-      <td>${show.lastName}</td>
-      <td>${show.rating}<td>
-      <td><a href="/delete/${show.id}">Delete</a></td>
-    </tr>
-	</c:forEach>
-  </tbody>
-</table>
-		
-		<a href="/creation">Add Show</a>	    
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="basic-addon1">Title</span>
+			  <input name="firstName" type="text" class="form-control" value="${shows.firstName}" aria-label="Username" aria-describedby="basic-addon1">
+			</div>
+			
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="basic-addon1">Network</span>
+			  <input name="lastName" type="text" class="form-control" value="${shows.lastName}" aria-label="Username" aria-describedby="basic-addon1">
+			</div>
+
+			 <button type="submit" class="btn btn-info">SUBMIT</button>
+			  </form> 
+			    <a href="/delete/${shows.id}">Delete</a>
 	 	</div>
 	  </div>
 	</div>

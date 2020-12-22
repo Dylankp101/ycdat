@@ -1,18 +1,24 @@
 package com.codingdojo.ycdat.models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+
+
 
 
 @Entity
@@ -27,20 +33,22 @@ public class Users {
     private String state;
     @Email(message="Email must be valid")
     private String email;
-    @Size(min=9, message="Password must be reater than 5 characters")
+    @Size(min=5, message="Password must be greater than 5 characters")
     private String password;
     @Transient
     private String passwordConfirmation;
     @Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
+    @OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private List<Shows> shows;
     
     public Users() {
     }
 
 	public Users(Long id, String firstName, String lastName, String location, String state,
 			@Email(message = "Email must be valid") String email,
-			@Size(min = 9, message = "Password must be reater than 5 characters") String password,
+			@Size(min = 5, message = "Password must be reater than 5 characters") String password,
 			String passwordConfirmation) {
 		this.id = id;
 		this.firstName = firstName;
